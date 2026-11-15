@@ -4,6 +4,7 @@
   const body = document.body;
   const root = body.dataset.root || "";
   const currentPage = body.dataset.page || "";
+  const dataVersion = "20261116-3";
   const header = document.querySelector("[data-site-header]");
   const sidebar = document.querySelector("[data-sidebar]");
   const footer = document.querySelector("[data-site-footer]");
@@ -88,7 +89,7 @@
 
   async function loadNavigation() {
     try {
-      const response = await fetch(`${root}data/navigation.json`);
+      const response = await fetch(`${root}data/navigation.json?v=${dataVersion}`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const pages = await response.json();
       if (!Array.isArray(pages)) throw new Error("navigation.json 必須是陣列");

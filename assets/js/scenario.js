@@ -6,6 +6,7 @@
 
   const root = document.body.dataset.root || "";
   const targetSlug = container.dataset.scenarioSlug;
+  const dataVersion = "20261116-3";
   const escapeHtml = (value) => String(value)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
@@ -36,7 +37,7 @@
       <ul>${scenario.validationNotes.map((note) => `<li>${escapeHtml(note)}</li>`).join("")}</ul>`;
   }
 
-  fetch(`${root}data/scenarios.json`)
+  fetch(`${root}data/scenarios.json?v=${dataVersion}`)
     .then((response) => {
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return response.json();
