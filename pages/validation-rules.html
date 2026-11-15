@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RoomQuest 的 Python 驗證規則、修改迴圈與已知限制。">
+  <title>驗證規則｜RoomQuest 開發筆記</title>
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20261116-2">
+</head>
+<body data-root="../" data-page="validation-rules">
+  <a class="skip-link" href="#main-content">跳到主要內容</a>
+  <header class="docs-header" data-site-header></header>
+  <div class="docs-layout">
+    <aside class="docs-sidebar" data-sidebar></aside>
+    <main class="docs-main" id="main-content">
+      <article class="doc-page">
+        <p class="page-meta">技術筆記｜更新：2026-11-16</p>
+        <h1>驗證規則</h1>
+        <p class="lead">規則驗證的目標不是證明謎題一定完美，而是在交給玩家以前，先攔下可以明確判定的錯誤。</p>
+
+        <section>
+          <h2>Python 檢查項目</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>項目</th><th>判斷方式</th><th>失敗例子</th></tr></thead>
+              <tbody>
+                <tr><td>存在性</td><td>題目引用的物品 ID 必須在核准資料中。</td><td>AI 提到照片裡沒有的檯燈。</td></tr>
+                <tr><td>唯一性</td><td>所有條件套用後應只剩一個候選物品。</td><td>「窗邊紅色物品」同時指向水壺與書包。</td></tr>
+                <tr><td>順序</td><td>關卡編號連續，依賴資訊必須先取得。</td><td>第二關先用到第三關答案。</td></tr>
+                <tr><td>答案來源</td><td>答案來自固定、經主持人確認的屬性。</td><td>使用會隨時間改變的時鐘指針。</td></tr>
+                <tr><td>安全性</td><td>動作必須在白名單內並符合物品標記。</td><td>要求玩家搬重物或觸碰插座。</td></tr>
+                <tr><td>格式</td><td>JSON 欄位、型別與答案類型符合 schema。</td><td>缺少提示，或答案回傳成一整段文字。</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2>修改迴圈</h2>
+          <ol class="steps">
+            <li>Python 產生具體錯誤，例如「符合條件的物品共有 2 個」。</li>
+            <li>只把失敗關卡、原始規格與錯誤原因交給 AI。</li>
+            <li>AI 重寫指定關卡，不改動已通過內容。</li>
+            <li>重新驗證；最多執行兩次，避免無限循環。</li>
+            <li>若仍失敗，交由主持人手動修改或放棄該關。</li>
+          </ol>
+          <p>原始規格的優先順序高於 AI 的修改建議。程式不會自行猜測缺少的欄位或偷偷補答案。</p>
+        </section>
+
+        <section>
+          <h2>已知限制</h2>
+          <ul>
+            <li><strong>封閉世界：</strong>唯一性只針對已拍到且已確認的物品，現場仍可能有漏拍的相似物。</li>
+            <li><strong>位置判斷：</strong>視覺模型可能看錯左右、前後或遮擋關係，因此 MVP 只使用主持人確認過的粗略區域。</li>
+            <li><strong>文字與數量：</strong>小字、反光與遮擋會降低辨識可靠度，關鍵答案仍需要人工確認。</li>
+            <li><strong>語句歧義：</strong>結構化條件通過，不代表玩家一定能從自然語言線索理解同一件事。</li>
+          </ul>
+          <aside class="warning"><strong>人工檢查仍然必要：</strong>主持人在核准前要回到現場確認線索是否自然、安全，而且沒有資料之外的歧義。</aside>
+        </section>
+
+        <section>
+          <h2>如何留下驗證紀錄</h2>
+          <p>每次產生遊戲時，主持人端應保存初稿、未通過項目、修改次數與最終結果。之後可以比較「只有 AI 生成」和「加入規則驗證」時，明顯錯誤與歧義是否減少。</p>
+        </section>
+      </article>
+    </main>
+  </div>
+  <footer class="docs-footer" data-site-footer></footer>
+  <script src="../assets/js/main.js?v=20261116-2" defer></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "home",
+    "title": "開始閱讀",
+    "summary": "網站目的、內容地圖與新增頁面的方式。",
+    "path": "index.html",
+    "group": "RoomQuest 開發筆記"
+  },
+  {
+    "id": "project-overview",
+    "title": "專案概覽",
+    "summary": "RoomQuest 的動機、核心設計與本次 MVP。",
+    "path": "pages/project-overview.html",
+    "group": "專案規格"
+  },
+  {
+    "id": "system-workflow",
+    "title": "系統流程",
+    "summary": "主持人模式、玩家模式與 game.json 的資料流。",
+    "path": "pages/system-workflow.html",
+    "group": "專案規格"
+  },
+  {
+    "id": "validation-rules",
+    "title": "驗證規則",
+    "summary": "哪些問題交給 Python 檢查，以及檢查的限制。",
+    "path": "pages/validation-rules.html",
+    "group": "技術筆記"
+  },
+  {
+    "id": "scene-case-b305",
+    "title": "案例：教室 B305",
+    "summary": "用三關示意案例檢查資料格式與線索唯一性。",
+    "path": "pages/scene-case-b305.html",
+    "group": "場景案例"
+  }
+]

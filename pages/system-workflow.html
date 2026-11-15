@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RoomQuest 主持人模式、玩家模式與資料流。">
+  <title>系統流程｜RoomQuest 開發筆記</title>
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20261116-2">
+</head>
+<body data-root="../" data-page="system-workflow">
+  <a class="skip-link" href="#main-content">跳到主要內容</a>
+  <header class="docs-header" data-site-header></header>
+  <div class="docs-layout">
+    <aside class="docs-sidebar" data-sidebar></aside>
+    <main class="docs-main" id="main-content">
+      <article class="doc-page">
+        <p class="page-meta">專案規格｜更新：2026-11-16</p>
+        <h1>系統流程</h1>
+        <p class="lead">系統分成主持人模式與玩家模式。所有 AI 生成都在主持人端完成；玩家開始遊戲後只讀取已核准的資料。</p>
+
+        <section>
+          <h2>主持人模式</h2>
+          <ol class="steps">
+            <li><strong>提供場景：</strong>上傳一張主要照片，必要時補充一至兩張。</li>
+            <li><strong>整理資料：</strong>多模態模型輸出物品、屬性、文字與粗略位置；解析失敗時可手動輸入。</li>
+            <li><strong>人工確認：</strong>主持人修正物品，並標示能否碰觸、是否會變動、能否作為答案。</li>
+            <li><strong>規劃關卡：</strong>Python 先整理候選物品，AI 再分兩階段決定關卡順序與線索文字。</li>
+            <li><strong>驗證與修改：</strong>Python 回報具體問題，只重寫未通過的關卡，最多兩輪。</li>
+            <li><strong>核准輸出：</strong>主持人預覽完整內容，再匯出 <code>game.json</code>。</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>玩家模式</h2>
+          <ol class="steps">
+            <li>載入主持人已核准的 <code>game.json</code>。</li>
+            <li>顯示故事、目前線索、輸入欄、提示按鈕與進度。</li>
+            <li>玩家觀察現場並作答，Python 正規化答案後比對。</li>
+            <li>答對才解鎖下一關；答錯可以依序查看分層提示。</li>
+            <li>完成所有關卡後組合並輸入最終密碼。</li>
+          </ol>
+          <aside class="note"><strong>設計決定：</strong>玩家模式不呼叫 AI，因此展演時不受模型延遲影響，也不會讓尚未驗證的內容臨時進入遊戲。</aside>
+        </section>
+
+        <section>
+          <h2>資料如何移動</h2>
+          <pre><code>空間照片
+  ↓
+scene.json（主持人修正）
+  ↓
+關卡規劃 → Python 驗證 → 局部修改
+  ↓
+game.json（主持人核准）
+  ↓
+玩家依序作答</code></pre>
+          <p><code>scene.json</code> 保存經確認的場景事實；<code>game.json</code> 保存故事、線索、提示、答案與關卡順序。兩者分開可以避免玩家端接觸原始照片或完整候選物品。</p>
+        </section>
+
+        <section>
+          <h2>課程概念對應</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>流程</th><th>課程概念</th></tr></thead>
+              <tbody>
+                <tr><td>只提供已確認的場景資料</td><td>Context Engineering</td></tr>
+                <tr><td>先排關卡，再寫線索</td><td>Planning</td></tr>
+                <tr><td>模型輸出 JSON，由 Python 執行</td><td>Tool Use</td></tr>
+                <tr><td>錯誤原因退回後局部修改</td><td>Reflection</td></tr>
+                <tr><td>模型加上規則、狀態與人工核准</td><td>AI Model + Harness</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </article>
+    </main>
+  </div>
+  <footer class="docs-footer" data-site-footer></footer>
+  <script src="../assets/js/main.js?v=20261116-2" defer></script>
+</body>
+</html>

@@ -1,63 +1,74 @@
-# RoomQuest Project Hub
+# RoomQuest 開發筆記
 
-RoomQuest 是一個生成式 AI 實境解謎專案概念：主持人提供並確認真實場景資料，AI 規劃關卡與線索，Python 負責檢查可驗證的規則，最後再由主持人核准後交給玩家。
+這是「第九週作業：建立自己的 `AGENTS.md`」所製作的小型文件網站。
 
-這個 repository 是 RoomQuest 的公開專案網站，也是「建立自己的 `AGENTS.md`」課堂作業成果。網站目前呈現專案概念、工作流程、示意案例與開發方向；完整 RoomQuest 遊戲仍在規劃與開發中。
+- 網頁：<https://lyixuan0718.github.io/roomquest-project-hub/>
+- Repository：<https://github.com/lyixuan0718/roomquest-project-hub>
+- 作者：B1228010 長庚 AI 四 李怡萱
 
-## Website
+## 作業重點
 
-- GitHub repository: <https://github.com/lyixuan0718/roomquest-project-hub>
-- GitHub Pages: <https://lyixuan0718.github.io/roomquest-project-hub/>
+網站不是只有一張完成後就不再變動的頁面。`AGENTS.md` 定義了專案目的、語氣、資訊架構、頁面格式、檔名、資料來源、視覺規則與完成前檢查，讓 AI 可以依照相同方式繼續增加開發筆記和場景案例。
 
-## Features
+實際網站用以下機制對應規則：
 
-- 響應式單頁專案網站
-- 主持人／玩家流程切換
-- 由 `data/scenarios.json` 驅動的場景案例
-- 場景資料驗證腳本
-- 可供 AI 持續維護的 `AGENTS.md`
-- 無需建置工具，可直接部署到 GitHub Pages
+1. `templates/content-page.html` 提供新頁面的固定骨架。
+2. `data/navigation.json` 同時管理側欄與首頁內容索引。
+3. `data/scenarios.json` 集中保存場景案例，避免重複抄寫。
+4. `scripts/validate_site.py` 檢查頁面是否遵守共用結構。
 
-## Project structure
+## 目前頁面
+
+- 開始閱讀：網站目的、內容地圖與延伸方式。
+- 專案概覽：RoomQuest 的動機、核心原則與 MVP。
+- 系統流程：主持人模式、玩家模式與資料流。
+- 驗證規則：Python 檢查項目、修改迴圈與限制。
+- 案例：教室 B305：由 JSON 載入的三關示意案例。
+
+## 專案結構
 
 ```text
 .
 ├── AGENTS.md
 ├── README.md
 ├── index.html
-├── .nojekyll
 ├── assets/
 │   ├── css/styles.css
-│   └── js/main.js
-├── data/scenarios.json
+│   └── js/
+│       ├── main.js
+│       └── scenario.js
+├── data/
+│   ├── navigation.json
+│   └── scenarios.json
 ├── docs/scenario-template.md
-└── scripts/validate_scenarios.py
+├── pages/
+│   ├── project-overview.html
+│   ├── system-workflow.html
+│   ├── validation-rules.html
+│   └── scene-case-b305.html
+├── templates/content-page.html
+└── scripts/
+    ├── validate_site.py
+    └── validate_scenarios.py
 ```
 
-## Local preview
+## 新增一般內容頁
+
+1. 複製 `templates/content-page.html` 到 `pages/<slug>.html`。
+2. 替換範本內所有 `TODO`，並設定唯一的 `data-page`。
+3. 在 `data/navigation.json` 加入頁面資料。
+4. 執行檢查並在瀏覽器預覽。
+
+詳細規則請閱讀 [AGENTS.md](AGENTS.md)。
+
+## 本機檢查
 
 ```bash
+python3 scripts/validate_site.py
 python3 scripts/validate_scenarios.py
+node --check assets/js/main.js
+node --check assets/js/scenario.js
 python3 -m http.server 8000
 ```
 
-Then open <http://localhost:8000>.
-
-## Add a scenario
-
-1. Read `AGENTS.md` and `docs/scenario-template.md`.
-2. Add a new object to `data/scenarios.json`.
-3. Run the validation script.
-4. Preview the page at desktop and mobile widths.
-
-## Deployment
-
-GitHub Pages settings:
-
-- Source: `Deploy from a branch`
-- Branch: `main`
-- Folder: `/ (root)`
-
-## Author
-
-李怡萱｜長庚大學人工智慧學系
+打開 <http://localhost:8000> 即可預覽。`main` branch 更新後，GitHub Pages 會自動部署公開網站。

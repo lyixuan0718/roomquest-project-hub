@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RoomQuest 的專案動機、核心設計與最低可行版本。">
+  <title>專案概覽｜RoomQuest 開發筆記</title>
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20261116-2">
+</head>
+<body data-root="../" data-page="project-overview">
+  <a class="skip-link" href="#main-content">跳到主要內容</a>
+  <header class="docs-header" data-site-header></header>
+  <div class="docs-layout">
+    <aside class="docs-sidebar" data-sidebar></aside>
+    <main class="docs-main" id="main-content">
+      <article class="doc-page">
+        <p class="page-meta">專案規格｜更新：2026-11-16</p>
+        <h1>專案概覽</h1>
+        <p class="lead">RoomQuest 希望把教室或公共空間中原本就存在的物品，轉換成一組可以實際遊玩的微型解謎關卡。</p>
+
+        <section>
+          <h2>問題與動機</h2>
+          <p>一般密室逃脫需要事先布置場地、準備道具與撰寫固定題目。RoomQuest 嘗試讓主持人提供一至三張空間照片，先整理出可用物品，再由生成式 AI 規劃一次性的解謎內容。</p>
+          <p>玩家不會看到完整物品清單，而是根據線索觀察現場，取得物品上的數字、數量、顏色或固定文字，最後組成密碼。</p>
+        </section>
+
+        <section>
+          <h2>核心原則</h2>
+          <blockquote>AI 出題，程式驗題，人最後核准。</blockquote>
+          <p>AI 擅長撰寫故事、線索與提示，但不能直接假設它產生的內容都正確。可以明確判斷的部分，例如物品是否存在、條件是否唯一、答案是否固定，會交給 Python 檢查。</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>角色</th><th>負責內容</th></tr></thead>
+              <tbody>
+                <tr><td>生成式 AI</td><td>照片解析、關卡規劃、線索文字與分層提示。</td></tr>
+                <tr><td>Python</td><td>格式、存在性、唯一性、順序、安全與答案比對。</td></tr>
+                <tr><td>主持人</td><td>修正場景資料、處理現場歧義並核准遊戲。</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2>本次最低可行版本</h2>
+          <ul>
+            <li>單一空間，以一張主要照片為主，必要時補充一至兩張。</li>
+            <li>五至十個經主持人確認的候選物品。</li>
+            <li>三關線性連鎖謎題，答案為數字、選項或短詞。</li>
+            <li>Python 驗證失敗後，最多讓 AI 修改兩次。</li>
+            <li>主持人模式與玩家模式各一個 Gradio 介面。</li>
+            <li>主持人核准後匯出 <code>game.json</code>，玩家端不再呼叫 AI。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>這次不做的內容</h2>
+          <p>為了讓課堂專案可以完成，第一版不處理多房間、多人即時連線、AR、帳號系統、即時攝影機辨識、模型訓練或大型資料庫。玩家拍照驗證也先保留為未來延伸。</p>
+          <aside class="note"><strong>備案：</strong>如果照片解析不穩定，主持人可以手動輸入場景資料，後續關卡規劃與驗證流程仍然可以運作。</aside>
+        </section>
+      </article>
+    </main>
+  </div>
+  <footer class="docs-footer" data-site-footer></footer>
+  <script src="../assets/js/main.js?v=20261116-2" defer></script>
+</body>
+</html>

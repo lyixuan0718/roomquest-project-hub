@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RoomQuest 教室 B305 三關示意案例。">
+  <title>案例：教室 B305｜RoomQuest 開發筆記</title>
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20261116-2">
+</head>
+<body data-root="../" data-page="scene-case-b305">
+  <a class="skip-link" href="#main-content">跳到主要內容</a>
+  <header class="docs-header" data-site-header></header>
+  <div class="docs-layout">
+    <aside class="docs-sidebar" data-sidebar></aside>
+    <main class="docs-main" id="main-content">
+      <article class="doc-page">
+        <p class="page-meta">場景案例｜更新：2026-11-16</p>
+        <h1>案例：教室 B305</h1>
+        <p class="lead">這個三關案例用來確認場景資料、線索與驗證說明能否用同一種格式保存；它是示意資料，不是實際遊玩結果。</p>
+
+        <section>
+          <h2>案例內容</h2>
+          <div class="scenario-view" data-scenario-view data-scenario-slug="classroom-b305" aria-live="polite">
+            <p class="loading-text">正在載入場景資料……</p>
+          </div>
+        </section>
+
+        <section>
+          <h2>為什麼不直接寫在 HTML？</h2>
+          <p>物品、關卡與答案集中放在 <code>data/scenarios.json</code>。同一份資料未來可以同時供網頁、Python 驗證器或 RoomQuest 原型使用，不需要在多個頁面重複修改。</p>
+        </section>
+
+        <section>
+          <h2>新增下一個案例</h2>
+          <p>先依 <code>docs/scenario-template.md</code> 收集經主持人確認的資料，再把新案例加入 JSON，建立一個使用相同場景元件的頁面，最後執行兩支驗證程式。</p>
+        </section>
+      </article>
+    </main>
+  </div>
+  <footer class="docs-footer" data-site-footer></footer>
+  <script src="../assets/js/main.js?v=20261116-2" defer></script>
+  <script src="../assets/js/scenario.js?v=20261116-2" defer></script>
+</body>
+</html>
