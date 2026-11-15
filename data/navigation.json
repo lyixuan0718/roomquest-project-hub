@@ -33,5 +33,12 @@
     "summary": "用三關示意案例檢查資料格式與線索唯一性。",
     "path": "pages/scene-case-b305.html",
     "group": "場景案例"
+  },
+  {
+    "id": "scene-case-library",
+    "title": "案例：圖書館閱讀區",
+    "summary": "沿用相同規則建立第二個場景，驗證內容可以持續擴充。",
+    "path": "pages/scene-case-library.html",
+    "group": "場景案例"
   }
 ]

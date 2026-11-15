@@ -32,6 +32,7 @@
 | `project-overview` | `pages/project-overview.html` | 專案動機、核心原則與 MVP |
 | `system-workflow` | `pages/system-workflow.html` | 主持人／玩家流程與資料流 |
 | `scene-case-b305` | `pages/scene-case-b305.html` | 由 JSON 產生的教室案例 |
+| `scene-case-library` | `pages/scene-case-library.html` | 沿用相同規則產生的圖書館案例 |
 | `validation-rules` | `pages/validation-rules.html` | Python 可檢查的規則與限制 |
 
 新增一般內容頁時，從 `templates/content-page.html` 複製；不要從現有頁面任意拼湊。
@@ -58,6 +59,7 @@ roomquest-project-hub/
 │   ├── project-overview.html
 │   ├── system-workflow.html
 │   ├── scene-case-b305.html
+│   ├── scene-case-library.html
 │   └── validation-rules.html
 ├── templates/
 │   └── content-page.html

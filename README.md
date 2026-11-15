@@ -24,6 +24,7 @@
 - 系統流程：主持人模式、玩家模式與資料流。
 - 驗證規則：Python 檢查項目、修改迴圈與限制。
 - 案例：教室 B305：由 JSON 載入的三關示意案例。
+- 案例：圖書館閱讀區：沿用相同規則建立的第二個示意案例。
 
 ## 專案結構
 
@@ -45,7 +46,8 @@
 │   ├── project-overview.html
 │   ├── system-workflow.html
 │   ├── validation-rules.html
-│   └── scene-case-b305.html
+│   ├── scene-case-b305.html
+│   └── scene-case-library.html
 ├── templates/content-page.html
 └── scripts/
     ├── validate_site.py
