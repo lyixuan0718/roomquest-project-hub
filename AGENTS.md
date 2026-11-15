@@ -52,17 +52,25 @@ Create `assets/images/` only when an actual image is added. Do not add empty fol
 
 ## 5. Visual rules
 
-- Overall mood: quiet, exploratory, trustworthy, and slightly mysterious.
+- Treat the site as a **student project notebook**, not a startup landing page or AI product advertisement.
+- Overall mood: quiet, editorial, practical, and trustworthy. The page should feel written and maintained by a student who is documenting a real project.
+- Prefer numbered sections, ruled tables, plain borders, generous reading space, and direct Traditional Chinese copy.
 - Use the existing design tokens in `:root`; do not scatter new literal colors throughout the stylesheet.
-- Use the four workflow identities consistently:
-  - AI: purple.
-  - Python verification: green.
-  - Human action: amber.
-  - Data or interface state: blue.
-- Keep body text highly readable and avoid excessive animation.
+- Use one restrained brick-red accent for emphasis. Workflow roles may use muted blue, green, or amber text only when the distinction is useful.
+- Avoid common generated-landing-page patterns: oversized slogan text, English uppercase eyebrow labels, glowing gradients, glass effects, large rounded cards, pill-shaped buttons, decorative dashboards, and repeated three-column feature grids.
+- Do not add abstract AI illustrations merely to fill space. A real photo, diagram, test result, or plain project note is preferred.
+- Keep body text highly readable and avoid ornamental animation. Motion is not required for this project.
 - Maintain responsive behavior down to 320 px wide.
 - Preserve visible keyboard focus and support `prefers-reduced-motion`.
 - Do not add external UI frameworks for a small change.
+
+## 5.1 Writing voice
+
+- Write in a direct student voice: explain what the project is testing, what has been completed, and what is still uncertain.
+- Prefer specific sentences such as “Python checks whether two objects match the same clue” over promotional claims such as “an intelligent, seamless experience”.
+- Use English only for established technical terms or filenames. Do not use English as decoration.
+- Avoid generic slogans, exaggerated claims, and consultant-style wording.
+- The homepage may use first person when describing the motivation and design decisions.
 
 ## 6. HTML, CSS, and JavaScript responsibilities
 

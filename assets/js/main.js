@@ -1,4 +1,3 @@
-const header = document.querySelector("[data-header]");
 const nav = document.querySelector("[data-nav]");
 const navToggle = document.querySelector("[data-nav-toggle]");
 const tabButtons = Array.from(document.querySelectorAll("[data-tab]"));
@@ -6,10 +5,6 @@ const tabPanels = Array.from(document.querySelectorAll("[data-panel]"));
 const scenarioList = document.querySelector("[data-scenario-list]");
 const scenarioDetail = document.querySelector("[data-scenario-detail]");
 const scenarioStatus = document.querySelector("[data-scenario-status]");
-
-function setHeaderState() {
-  header?.classList.toggle("is-scrolled", window.scrollY > 18);
-}
 
 function closeNavigation() {
   nav?.classList.remove("is-open");
@@ -28,9 +23,6 @@ nav?.querySelectorAll("a").forEach((link) => {
   link.addEventListener("click", closeNavigation);
 });
 
-window.addEventListener("scroll", setHeaderState, { passive: true });
-setHeaderState();
-
 function activateTab(tabName, moveFocus = false) {
   tabButtons.forEach((button) => {
     const isActive = button.dataset.tab === tabName;
@@ -47,9 +39,9 @@ function activateTab(tabName, moveFocus = false) {
 tabButtons.forEach((button, index) => {
   button.addEventListener("click", () => activateTab(button.dataset.tab));
   button.addEventListener("keydown", (event) => {
-    if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+    if (!["ArrowLeft", "ArrowRight"].includes(event.key)) return;
     event.preventDefault();
-    const direction = event.key === 'ArrowRight' ? 1 : -1;
+    const direction = event.key === "ArrowRight" ? 1 : -1;
     const nextIndex = (index + direction + tabButtons.length) % tabButtons.length;
     activateTab(tabButtons[nextIndex].dataset.tab, true);
   });
@@ -72,7 +64,7 @@ function renderScenarioDetail(scenario) {
   const clues = scenario.clues
     .map((clue) => `
       <li class="clue-item">
-        <span class="clue-number">${escapeHTML(clue.step)}</span>
+        <span class="clue-number">${String(clue.step).padStart(2, "0")}</span>
         <div>
           <strong>${escapeHTML(clue.prompt)}</strong>
           <p>${escapeHTML(clue.verification)}</p>
@@ -88,7 +80,7 @@ function renderScenarioDetail(scenario) {
 
   scenarioDetail.innerHTML = `
     <div class="scenario-topline">
-      <span class="scenario-status">${escapeHTML(scenario.status)}</span>
+      <span>${escapeHTML(scenario.status)}</span>
       <span>${escapeHTML(scenario.location)}</span>
     </div>
     <h3>${escapeHTML(scenario.title)}</h3>
@@ -97,7 +89,7 @@ function renderScenarioDetail(scenario) {
     <ol class="clue-list">${clues}</ol>
     <p><strong>最終密碼：</strong>${escapeHTML(scenario.finalCode)}</p>
     <div class="validation-box">
-      <strong>驗證重點</strong>
+      <strong>程式需要檢查的地方</strong>
       <ul>${validationNotes}</ul>
     </div>
   `;
@@ -110,7 +102,7 @@ function renderScenarios(scenarios) {
 
   scenarioList.innerHTML = scenarios
     .map((scenario, index) => `
-      <button class="scenario-button${index === 0 ? ' is-active' : ''}" type="button" data-scenario-index="${index}" aria-pressed="${index === 0}">
+      <button class="scenario-button${index === 0 ? " is-active" : ""}" type="button" data-scenario-index="${index}" aria-pressed="${index === 0}">
         <strong>${escapeHTML(scenario.title)}</strong>
         <span>${escapeHTML(scenario.status)} · ${escapeHTML(scenario.location)}</span>
       </button>
@@ -118,6 +110,7 @@ function renderScenarios(scenarios) {
     .join("");
 
   const buttons = Array.from(scenarioList.querySelectorAll("[data-scenario-index]"));
+
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
       const index = Number(button.dataset.scenarioIndex);
@@ -131,36 +124,21 @@ function renderScenarios(scenarios) {
   });
 
   renderScenarioDetail(scenarios[0]);
-  scenarioStatus.textContent = `目前載入 ${scenarios.length} 個案例；案例內容來自 data/scenarios.json。`;
+  scenarioStatus.textContent = `共 ${scenarios.length} 個案例；內容來自 data/scenarios.json。`;
 }
 
 async function loadScenarios() {
   try {
     const response = await fetch("data/scenarios.json", { cache: "no-store" });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const scenarios = await response.json();
-    renderScenarios(scenarios);
+    renderScenarios(await response.json());
   } catch (error) {
     scenarioDetail.innerHTML = `
-      <p class="empty-state"><strong>案例資料載入失敗。</strong><br>請確認網站是透過 HTTP server 開啟，而且 data/scenarios.json 路徑正確。</p>
+      <p class="empty-state"><strong>案例資料載入失敗。</strong><br>請確認 data/scenarios.json 路徑與網站部署狀態。</p>
     `;
     scenarioStatus.textContent = `錯誤：${error.message}`;
   }
 }
 
-const revealObserver = 'IntersectionObserver' in window
-  ? new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      });
-    }, { threshold: 0.12 })
-  : null;
-
-document.querySelectorAll(".reveal").forEach((element) => {
-  if (revealObserver) revealObserver.observe(element);
-  else element.classList.add("is-visible");
-});
-
 loadScenarios();
+

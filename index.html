@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="RoomQuest 將真實空間轉換成可驗證的生成式 AI 解謎體驗。">
-  <meta name="theme-color" content="#111827">
-  <title>RoomQuest｜把真實空間變成解謎遊戲</title>
+  <meta name="description" content="RoomQuest 課堂專案紀錄：把真實空間轉換成可驗證的生成式 AI 解謎遊戲。">
+  <meta name="theme-color" content="#f3f0e8">
+  <title>RoomQuest｜課堂專案紀錄</title>
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
   <a class="skip-link" href="#main-content">跳到主要內容</a>
 
-  <header class="site-header" data-header>
+  <header class="site-header">
     <div class="container nav-shell">
       <a class="brand" href="#top" aria-label="RoomQuest 首頁">
-        <span class="brand-mark" aria-hidden="true">RQ</span>
-        <span>RoomQuest</span>
+        <strong>RoomQuest</strong>
+        <span>課堂專案紀錄</span>
       </a>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" data-nav-toggle>
@@ -25,194 +25,167 @@
       </button>
 
       <nav id="primary-nav" class="primary-nav" aria-label="主要導覽" data-nav>
-        <a href="#about">專案概念</a>
-        <a href="#workflow">系統流程</a>
-        <a href="#scenarios">場景案例</a>
-        <a href="#architecture">技術架構</a>
-        <a class="nav-cta" href="https://github.com/lyixuan0718/roomquest-project-hub">GitHub</a>
+        <a href="#question">發想</a>
+        <a href="#workflow">流程</a>
+        <a href="#scenarios">案例</a>
+        <a href="#architecture">技術</a>
+        <a href="#rules">專案規則</a>
+        <a href="https://github.com/lyixuan0718/roomquest-project-hub">GitHub ↗</a>
       </nav>
     </div>
   </header>
 
   <main id="main-content">
-    <section id="top" class="hero section">
-      <div class="hero-grid" aria-hidden="true"></div>
+    <section id="top" class="hero">
       <div class="container hero-layout">
-        <div class="hero-copy reveal">
-          <p class="eyebrow">Grounded Generative Experience</p>
-          <h1>把眼前的空間，<br><span>變成一場解謎遊戲。</span></h1>
-          <p class="hero-lead">RoomQuest 先理解經主持人確認的真實場景，再由 AI 規劃關卡、Python 驗證規則，產生一次性的微型解謎體驗。</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#workflow">查看運作流程</a>
-            <a class="button button-secondary" href="#scenarios">探索示意案例</a>
-          </div>
-          <div class="status-line" aria-label="專案目前狀態">
-            <span class="status-dot" aria-hidden="true"></span>
-            <strong>目前狀態：</strong>概念原型與架構規劃
-          </div>
+        <div class="hero-copy">
+          <p class="kicker">生成式 AI 應用｜第九週作業延伸</p>
+          <h1>一張教室照片，能不能變成真的玩得完的解謎遊戲？</h1>
+          <p class="hero-lead">這是我為期末專案提出的 RoomQuest。它不只是請 AI 寫幾道謎語，而是先把真實空間整理成資料，再讓 AI 出題、讓程式檢查、最後由人決定能不能發布。</p>
+          <a class="text-link" href="#workflow">從流程開始看 <span aria-hidden="true">↓</span></a>
         </div>
 
-        <div class="hero-visual reveal" aria-label="RoomQuest 核心流程示意">
-          <div class="room-frame">
-            <div class="room-label">SCENE 01</div>
-            <div class="object object-board"><span>3</span></div>
-            <div class="object object-chair chair-one"></div>
-            <div class="object object-chair chair-two"></div>
-            <div class="object object-chair chair-three"></div>
-            <div class="object object-bottle">7</div>
-            <div class="scan-line"></div>
-            <div class="clue-card">
-              <span>CLUE</span>
-              <strong>數字藏在已確認的場景裡</strong>
+        <aside class="project-sheet" aria-label="專案摘要">
+          <p class="sheet-title">PROJECT NOTE / 01</p>
+          <dl>
+            <div><dt>作者</dt><dd>李怡萱｜長庚 AI 四</dd></div>
+            <div><dt>目前階段</dt><dd>概念與流程原型</dd></div>
+            <div><dt>預計成果</dt><dd>三關微型解謎遊戲</dd></div>
+            <div><dt>核心原則</dt><dd>AI 出題，程式驗題</dd></div>
+          </dl>
+          <p class="margin-note">我想做的不是「ChatGPT 密室逃脫」，而是一個能說明生成內容如何被限制、檢查與修正的作品。</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="question" class="section ruled-section">
+      <div class="container reading-layout">
+        <div class="section-number" aria-hidden="true">01</div>
+        <div>
+          <p class="section-label">發想從哪裡來</p>
+          <h2>把 AI 從「聊天視窗」帶回真實空間。</h2>
+          <div class="prose-grid">
+            <p>一般密室逃脫需要先布置場地、準備道具與撰寫固定題目。我想測試：如果教室裡本來就有公告欄、椅子、水壺與門牌，生成式 AI 能不能利用這些東西，快速排出一場只屬於這個空間的遊戲？</p>
+            <p>最大的難點不是「能不能生成文字」，而是題目有沒有引用不存在的物品、是否同時指向兩個答案、答案會不會隨時間改變，以及操作是否安全。這些問題不能只靠另一個 AI 說「看起來沒問題」。</p>
+          </div>
+          <blockquote>創意內容交給生成式 AI；能以規則確認的部分交給 Python；最後決定權留給主持人。</blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section id="workflow" class="section ruled-section">
+      <div class="container reading-layout">
+        <div class="section-number" aria-hidden="true">02</div>
+        <div>
+          <p class="section-label">系統流程</p>
+          <h2>主持人先把遊戲做完，玩家才開始玩。</h2>
+          <p class="section-intro">遊玩時不會臨時呼叫 AI。所有線索都要先通過程式檢查與主持人核准，再存進 <code>game.json</code>。</p>
+
+          <div class="workflow-tabs">
+            <div class="tab-list" role="tablist" aria-label="RoomQuest 工作流程">
+              <button class="tab-button is-active" type="button" role="tab" id="host-tab" aria-selected="true" aria-controls="host-panel" data-tab="host">主持人模式</button>
+              <button class="tab-button" type="button" role="tab" id="player-tab" aria-selected="false" aria-controls="player-panel" data-tab="player">玩家模式</button>
+            </div>
+
+            <div id="host-panel" class="tab-panel" role="tabpanel" aria-labelledby="host-tab" data-panel="host">
+              <ol class="workflow-list">
+                <li><span>01</span><div><strong>整理場景</strong><p>照片由多模態模型解析；主持人修正名稱、數量、文字、位置與可碰觸性。</p></div><em>人＋AI</em></li>
+                <li><span>02</span><div><strong>挑出可用物品</strong><p>Python 找出在已確認資料中可以被唯一指認、而且答案固定的物品。</p></div><em>Python</em></li>
+                <li><span>03</span><div><strong>規劃關卡</strong><p>AI 先安排物品、答案來源與順序，再撰寫線索及分層提示。</p></div><em>AI</em></li>
+                <li><span>04</span><div><strong>驗證與退回</strong><p>檢查存在性、唯一性、順序、安全與答案來源；不合格就回報具體原因。</p></div><em>Python</em></li>
+                <li><span>05</span><div><strong>預覽並發布</strong><p>主持人手動確認完整遊戲，再匯出核准版 <code>game.json</code>。</p></div><em>人</em></li>
+              </ol>
+            </div>
+
+            <div id="player-panel" class="tab-panel" role="tabpanel" aria-labelledby="player-tab" data-panel="player" hidden>
+              <ol class="workflow-list">
+                <li><span>01</span><div><strong>載入遊戲</strong><p>玩家端只讀取主持人核准的 <code>game.json</code>。</p></div><em>資料</em></li>
+                <li><span>02</span><div><strong>閱讀線索</strong><p>玩家不知道候選物品清單，必須觀察完整空間。</p></div><em>人</em></li>
+                <li><span>03</span><div><strong>輸入答案</strong><p>Python 正規化數字、選項或短詞後進行比對。</p></div><em>Python</em></li>
+                <li><span>04</span><div><strong>解鎖下一關</strong><p>答錯可以查看分層提示；答對才會取得下一條線索。</p></div><em>介面</em></li>
+                <li><span>05</span><div><strong>組合最終密碼</strong><p>完成所有關卡後，組合每關得到的數字並顯示結果。</p></div><em>介面</em></li>
+              </ol>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="about" class="section section-light">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Core idea</p>
-          <h2>不是讓 AI 自由幻想，而是讓生成結果可以被檢查。</h2>
-          <p>RoomQuest 把創意與驗證分開：AI 負責生成內容，Python 負責檢查明確規則，主持人保留最後決定權。</p>
-        </div>
-
-        <div class="principle-grid">
-          <article class="principle-card principle-ai reveal">
-            <div class="principle-index">01</div>
-            <p class="card-label">AI generation</p>
-            <h3>AI 出題</h3>
-            <p>依據場景 JSON 選擇物品、規劃順序，再撰寫故事、線索與分層提示。</p>
-          </article>
-          <article class="principle-card principle-python reveal">
-            <div class="principle-index">02</div>
-            <p class="card-label">Rule verification</p>
-            <h3>Python 驗題</h3>
-            <p>檢查物品是否存在、條件是否唯一、答案是否固定，以及操作是否安全。</p>
-          </article>
-          <article class="principle-card principle-human reveal">
-            <div class="principle-index">03</div>
-            <p class="card-label">Human in the loop</p>
-            <h3>主持人核准</h3>
-            <p>修正場景資料、查看驗證報告，最後選擇修改、重新生成或發布遊戲。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="workflow" class="section section-dark">
-      <div class="container">
-        <div class="section-heading section-heading-inverse reveal">
-          <p class="eyebrow">Workflow</p>
-          <h2>兩種角色，一條可追蹤的資料路徑。</h2>
-          <p>所有 AI 生成與驗證都在主持人端完成；玩家端只載入核准後的遊戲資料，不會在遊玩途中臨時呼叫 AI。</p>
-        </div>
-
-        <div class="workflow-tabs reveal">
-          <div class="tab-list" role="tablist" aria-label="RoomQuest 工作流程">
-            <button class="tab-button is-active" type="button" role="tab" id="host-tab" aria-selected="true" aria-controls="host-panel" data-tab="host">主持人模式</button>
-            <button class="tab-button" type="button" role="tab" id="player-tab" aria-selected="false" aria-controls="player-panel" data-tab="player">玩家模式</button>
-          </div>
-
-          <div id="host-panel" class="tab-panel" role="tabpanel" aria-labelledby="host-tab" data-panel="host">
-            <ol class="workflow-list">
-              <li class="workflow-step step-human"><span>1</span><div><strong>提供並確認場景</strong><p>上傳照片，修正物品、屬性、可碰觸性與是否會變動。</p></div></li>
-              <li class="workflow-step step-python"><span>2</span><div><strong>計算可用物品</strong><p>Python 找出在已確認場景中可以被唯一指認的候選物品。</p></div></li>
-              <li class="workflow-step step-ai"><span>3</span><div><strong>規劃與撰寫關卡</strong><p>AI 先建立關卡鏈，再產生正式線索與分層提示。</p></div></li>
-              <li class="workflow-step step-python"><span>4</span><div><strong>驗證並退回修改</strong><p>未通過時回傳具體原因，最多自動修改兩次。</p></div></li>
-              <li class="workflow-step step-human"><span>5</span><div><strong>預覽與核准</strong><p>主持人確認後，匯出唯一交接檔案 <code>game.json</code>。</p></div></li>
-            </ol>
-          </div>
-
-          <div id="player-panel" class="tab-panel" role="tabpanel" aria-labelledby="player-tab" data-panel="player" hidden>
-            <ol class="workflow-list">
-              <li class="workflow-step step-data"><span>1</span><div><strong>載入核准遊戲</strong><p>玩家端只讀取主持人發布的 <code>game.json</code>。</p></div></li>
-              <li class="workflow-step step-human"><span>2</span><div><strong>觀察現場並作答</strong><p>依照目前線索尋找物品，輸入數字、選項或短詞。</p></div></li>
-              <li class="workflow-step step-python"><span>3</span><div><strong>正規化與比對</strong><p>Python 比對答案；答錯可查看由模糊到明確的提示。</p></div></li>
-              <li class="workflow-step step-data"><span>4</span><div><strong>解鎖下一關</strong><p>完成所有關卡後，組合取得的數字成為最終密碼。</p></div></li>
-              <li class="workflow-step step-data"><span>5</span><div><strong>顯示通關結果</strong><p>呈現完成時間、提示使用次數及遊戲結局。</p></div></li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="scenarios" class="section section-light">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Scene cases</p>
-          <h2>同一套規則，可以持續增加新的空間。</h2>
-          <p>案例由結構化資料產生。新增內容時不必重做首頁，只需要依照 AGENTS.md 的格式加入一筆場景資料。</p>
-        </div>
-
-        <div class="scenario-layout">
-          <div class="scenario-list" data-scenario-list aria-label="場景案例清單"></div>
-          <article class="scenario-detail reveal" data-scenario-detail aria-live="polite">
-            <p class="empty-state">正在載入場景案例…</p>
-          </article>
-        </div>
-        <p class="data-note" data-scenario-status aria-live="polite"></p>
-      </div>
-    </section>
-
-    <section id="architecture" class="section section-paper">
-      <div class="container architecture-layout">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Architecture</p>
-          <h2>核心價值在 Harness，而不只是模型。</h2>
-          <p>RoomQuest 將課堂中的 Planning、Tool Use 與 Reflection 串成可檢查的工作流程，並保留人工確認的停損點。</p>
-        </div>
-
-        <div class="architecture-stack reveal" aria-label="技術架構">
-          <div class="architecture-row architecture-input"><span>01</span><strong>Scene input</strong><p>照片或主持人手動輸入</p></div>
-          <div class="architecture-row architecture-ai"><span>02</span><strong>AI planning</strong><p>場景解析、關卡規劃、線索生成</p></div>
-          <div class="architecture-row architecture-python"><span>03</span><strong>Python tools</strong><p>唯一性、安全性、答案來源與流程驗證</p></div>
-          <div class="architecture-row architecture-loop"><span>04</span><strong>Reflection loop</strong><p>具體錯誤回饋與局部重寫</p></div>
-          <div class="architecture-row architecture-output"><span>05</span><strong>Approved output</strong><p>主持人核准的 game.json</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-light">
-      <div class="container roadmap-shell reveal">
+    <section id="scenarios" class="section ruled-section">
+      <div class="container reading-layout">
+        <div class="section-number" aria-hidden="true">03</div>
         <div>
-          <p class="eyebrow">Development status</p>
-          <h2>誠實呈現目前進度。</h2>
+          <p class="section-label">紙上測試案例</p>
+          <h2>先用一間教室，確認題目真的有答案。</h2>
+          <p class="section-intro">下列內容由 <code>data/scenarios.json</code> 載入。它是資料格式與驗證方式的示範，不代表完整系統已經完成。</p>
+
+          <div class="scenario-layout">
+            <div class="scenario-list" data-scenario-list aria-label="場景案例清單"></div>
+            <article class="scenario-detail" data-scenario-detail aria-live="polite">
+              <p class="empty-state">正在載入場景案例…</p>
+            </article>
+          </div>
+          <p class="data-note" data-scenario-status aria-live="polite"></p>
         </div>
-        <div class="roadmap-grid">
-          <div class="roadmap-item">
-            <span class="roadmap-status status-done">已完成</span>
-            <h3>概念與流程設計</h3>
-            <p>主持人／玩家流程、MVP 範圍與驗證原則。</p>
-          </div>
-          <div class="roadmap-item">
-            <span class="roadmap-status status-active">開發中</span>
-            <h3>場景 JSON 與驗證器</h3>
-            <p>確認資料格式及 Python 可檢查的規則。</p>
-          </div>
-          <div class="roadmap-item">
-            <span class="roadmap-status status-future">未來延伸</span>
-            <h3>完整遊戲介面</h3>
-            <p>多模態解析、Gradio 主持人端及玩家端。</p>
+      </div>
+    </section>
+
+    <section id="architecture" class="section ruled-section">
+      <div class="container reading-layout">
+        <div class="section-number" aria-hidden="true">04</div>
+        <div>
+          <p class="section-label">技術做法</p>
+          <h2>這堂課教的內容，分別放在哪裡？</h2>
+          <p class="section-intro">模型不是整個系統。真正要展示的是模型、Python 工具、資料格式與人工確認如何一起工作。</p>
+
+          <div class="tech-table" role="table" aria-label="RoomQuest 技術架構">
+            <div class="tech-row tech-head" role="row"><span>階段</span><span>做法</span><span>課程概念</span></div>
+            <div class="tech-row" role="row"><strong>場景輸入</strong><span>照片解析或主持人手動輸入</span><span>多模態模型、Context Engineering</span></div>
+            <div class="tech-row" role="row"><strong>關卡規劃</strong><span>先排物品與答案，再寫線索</span><span>Planning、Two-Stage CoT</span></div>
+            <div class="tech-row" role="row"><strong>規則驗證</strong><span>Python 檢查唯一性、安全與答案來源</span><span>Tool Use、Harness</span></div>
+            <div class="tech-row" role="row"><strong>局部修改</strong><span>只把錯誤原因退回，最多修改兩次</span><span>Reflection</span></div>
+            <div class="tech-row" role="row"><strong>遊戲交接</strong><span>輸出主持人核准的 game.json</span><span>結構化輸出</span></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section final-cta">
-      <div class="container final-cta-inner reveal">
-        <p class="eyebrow">Build with rules</p>
-        <h2>讓下一次新增內容，不必重新解釋整個專案。</h2>
-        <p>AGENTS.md 記錄了網站目的、資料格式、視覺規則與完成標準，讓 AI 可以依照同一套方式持續新增案例。</p>
-        <a class="button button-primary" href="https://github.com/lyixuan0718/roomquest-project-hub/blob/main/AGENTS.md">閱讀 AGENTS.md</a>
+    <section class="section ruled-section">
+      <div class="container reading-layout">
+        <div class="section-number" aria-hidden="true">05</div>
+        <div>
+          <p class="section-label">開發紀錄</p>
+          <h2>目前做到哪裡，還缺什麼？</h2>
+          <div class="status-table">
+            <div><span class="status-mark done">完成</span><strong>概念、流程與 MVP 範圍</strong><p>主持人／玩家流程、三關線性謎題與風險處理方式。</p></div>
+            <div><span class="status-mark doing">進行中</span><strong>場景 JSON 與 Python 驗證器</strong><p>把可檢查的規則寫成資料格式與測試。</p></div>
+            <div><span class="status-mark later">下一步</span><strong>多模態解析與 Gradio 介面</strong><p>先完成能穩定展示的主持人端與玩家端。</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rules" class="section ruled-section rules-section">
+      <div class="container reading-layout">
+        <div class="section-number" aria-hidden="true">06</div>
+        <div>
+          <p class="section-label">本週作業重點</p>
+          <h2>AGENTS.md 讓下一次修改有規則可循。</h2>
+          <p class="section-intro">它不只寫「請維持相同風格」，而是記錄專案目的、檔案責任、場景資料格式、命名方式、誠實呈現原則與完成前必須通過的檢查。</p>
+          <ul class="rule-list">
+            <li><strong>新增案例：</strong>只改 <code>data/scenarios.json</code>，不用複製整段首頁 HTML。</li>
+            <li><strong>新增頁面：</strong>沿用相同版面、導覽與檔名規則，並更新 README。</li>
+            <li><strong>修改完成：</strong>必須通過資料驗證、JavaScript 語法檢查及桌機／手機預覽。</li>
+          </ul>
+          <a class="text-link" href="https://github.com/lyixuan0718/roomquest-project-hub/blob/main/AGENTS.md">在 GitHub 閱讀完整 AGENTS.md <span aria-hidden="true">↗</span></a>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-layout">
-      <div><strong>RoomQuest</strong><p>Generated with imagination. Grounded by rules.</p></div>
+      <p><strong>RoomQuest</strong>｜期末專案發想與開發紀錄</p>
       <p>李怡萱｜長庚大學人工智慧學系｜2026</p>
     </div>
   </footer>
@@ -220,3 +193,4 @@
   <script src="assets/js/main.js" defer></script>
 </body>
 </html>
+
