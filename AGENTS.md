@@ -49,7 +49,7 @@ roomquest-project-hub/
 │   ├── css/styles.css       # 全站共用排版與響應式規則
 │   └── js/
 │       ├── main.js          # 共用側欄、手機選單、內容索引
-│       └── scenario.js      # 從 scenarios.json 顯示案例
+│       └── scenario.js      # 場景卡、玩家模式與開發者驗證模式
 ├── data/
 │   ├── navigation.json      # 網站導覽與首頁內容索引的唯一來源
 │   └── scenarios.json       # 場景案例資料
@@ -99,6 +99,8 @@ roomquest-project-hub/
    - 兩個以上有 `h2` 的內容區段。
 6. 載入共用 `assets/js/main.js`。
 
+首頁的場景卡與案例頁的互動都必須讀取 `data/scenarios.json`，不得在 HTML 另外寫一份案例資料。
+
 `templates/content-page.html` 是頁面骨架的唯一範本。若共用結構改變，先更新範本，再同步既有頁面。
 
 ## 6. 新增頁面的流程
@@ -129,7 +131,7 @@ roomquest-project-hub/
 ## 7. 新增場景案例的流程
 
 1. 依照 `docs/scenario-template.md` 收集主持人確認過的資料。
-2. 在 `data/scenarios.json` 新增物件，`slug` 必須唯一。
+2. 在 `data/scenarios.json` 新增物件，`slug` 必須唯一，並填寫 `pagePath`、每關 `hints` 與 `uniquenessDemo`。
 3. 從內容頁範本建立 `pages/scene-case-<slug>.html`。
 4. 在頁面放置：
    ```html
@@ -138,6 +140,11 @@ roomquest-project-hub/
    ```
 5. 把頁面加入 `data/navigation.json`。
 6. 執行兩支 Python 驗證器並實際預覽。
+
+每個案例頁必須提供兩種視角：
+
+- `玩家模式`：一次顯示一關，支援答案輸入、分層提示、進度與通關結果，不得顯示答案或完整物品清單。
+- `開發者模式`：顯示物品、答案來源、驗證備註，並以可操作的條件篩選示範唯一性檢查。
 
 案例狀態只能使用：
 
@@ -159,6 +166,7 @@ roomquest-project-hub/
 - 表格在窄螢幕可水平捲動，但頁面本身不可溢出。
 - 所有連結與按鈕要有清楚的鍵盤焦點。
 - 尊重 `prefers-reduced-motion`；本專案原則上不需要動畫。
+- 互動必須用來說明 RoomQuest 的流程或驗證規則，不加入只有裝飾效果、按了沒有實際意義的控制項。
 
 ## 9. 內容誠信
 
@@ -171,7 +179,7 @@ roomquest-project-hub/
 
 ## 10. JavaScript 與資料規則
 
-- JavaScript 只負責共用導覽、手機選單與 JSON 顯示，不負責產生主要文章內容。
+- JavaScript 只負責共用導覽、手機選單、JSON 顯示、玩家作答與規則示範，不負責產生主要文章內容。
 - 所有插入頁面的 JSON 文字必須先做 HTML escaping。
 - fetch 路徑要使用 `body.dataset.root`，確保首頁與 `pages/` 都能載入。
 - 互動控制必須可用鍵盤操作並提供 ARIA 狀態。
@@ -188,7 +196,7 @@ roomquest-project-hub/
 - 沒有未替換的 `TODO`。
 - 範本、AGENTS.md、README 與必要資源存在。
 
-`scripts/validate_scenarios.py` 必須檢查場景 schema、狀態、slug 與關卡順序。
+`scripts/validate_scenarios.py` 必須檢查場景 schema、頁面路徑、狀態、slug、提示、關卡順序，以及完整條件是否能唯一指向指定目標。
 
 ## 12. 完成定義
 
@@ -200,7 +208,8 @@ roomquest-project-hub/
 4. `node --check assets/js/main.js` 與相關 JS 通過。
 5. 首頁、所有修改頁面與 JSON 載入沒有錯誤。
 6. 側欄、目前頁面標記與手機選單可操作。
-7. 桌機與手機版可正常閱讀。
-8. README、AGENTS.md、範本與實際結構一致。
-9. GitHub Pages 已部署，公開網址可以開啟。
+7. 每個場景的玩家模式可從第一關完成至最終密碼，開發者模式的唯一性檢查會隨條件更新。
+8. 桌機與手機版可正常閱讀。
+9. README、AGENTS.md、範本與實際結構一致。
+10. GitHub Pages 已部署，公開網址可以開啟。
 

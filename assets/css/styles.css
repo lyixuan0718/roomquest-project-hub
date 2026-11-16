@@ -427,6 +427,346 @@ th {
   font-size: 0.92rem;
 }
 
+.eyebrow,
+.scenario-card-meta {
+  margin: 0 0 6px;
+  color: var(--blue-dark);
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+}
+
+.scenario-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.scenario-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--blue);
+  border-radius: 5px;
+  padding: 22px;
+  background: #fff;
+}
+
+.scenario-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.22rem;
+}
+
+.scenario-card > p:not(.scenario-card-meta, .scenario-card-facts) {
+  flex: 1;
+  color: #454a4e;
+}
+
+.scenario-card-facts {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.scenario-card-actions,
+.play-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-top: 14px;
+}
+
+.button-primary,
+.button-secondary,
+.mode-switch button,
+.text-button {
+  border-radius: 4px;
+  padding: 9px 14px;
+  font: inherit;
+  font-weight: 700;
+  line-height: 1.35;
+  cursor: pointer;
+}
+
+a.button-primary {
+  text-decoration: none;
+}
+
+.button-primary {
+  border: 1px solid var(--blue-dark);
+  color: #fff;
+  background: var(--blue-dark);
+}
+
+.button-primary:hover {
+  color: #fff;
+  background: #103c57;
+}
+
+.button-secondary {
+  border: 1px solid var(--blue);
+  color: var(--blue-dark);
+  background: #fff;
+}
+
+.button-secondary:disabled,
+.button-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.text-link,
+.text-button {
+  color: var(--blue-dark);
+  background: transparent;
+}
+
+.text-button {
+  border: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.mode-switch {
+  display: inline-flex;
+  margin: 24px 0 4px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 3px;
+  background: var(--sidebar);
+}
+
+.mode-switch button {
+  border: 0;
+  color: var(--muted);
+  background: transparent;
+}
+
+.mode-switch button.is-active {
+  color: #fff;
+  background: var(--blue-dark);
+}
+
+.play-panel,
+.developer-panel {
+  margin-top: 24px;
+}
+
+.play-progress-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.play-progress-track {
+  height: 6px;
+  overflow: hidden;
+  margin: 8px 0 22px;
+  border-radius: 3px;
+  background: #e7ebee;
+}
+
+.play-progress-track span {
+  display: block;
+  height: 100%;
+  background: var(--blue);
+  transition: width 180ms ease-out;
+}
+
+.play-clue-card,
+.completion-panel,
+.uniqueness-demo {
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 24px;
+  background: #fff;
+}
+
+.play-clue-card {
+  border-left: 5px solid var(--blue);
+}
+
+.play-clue-card h3,
+.completion-panel h3,
+.uniqueness-demo h3 {
+  margin-top: 0;
+}
+
+.clue-prompt {
+  font-size: 1.08rem;
+}
+
+.answer-form {
+  margin-top: 24px;
+}
+
+.answer-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.answer-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+}
+
+.answer-controls input {
+  min-width: 0;
+  border: 1px solid #aeb4b9;
+  border-radius: 4px;
+  padding: 10px 12px;
+  font: inherit;
+}
+
+.answer-controls input:focus {
+  border-color: var(--blue);
+  outline: 3px solid #d9eaf3;
+}
+
+.feedback {
+  margin-top: 16px;
+}
+
+.feedback.is-error,
+.feedback.is-success {
+  border-left: 4px solid #b45309;
+  padding: 10px 14px;
+  background: #fff8e8;
+}
+
+.feedback.is-success {
+  border-left-color: #2f7b55;
+  background: #eef8f2;
+}
+
+.next-clue {
+  display: block;
+  margin-top: 12px;
+}
+
+.hint-list {
+  margin-top: 16px;
+  border-top: 1px solid var(--soft-line);
+  padding-top: 14px;
+}
+
+.hint-list:empty {
+  display: none;
+}
+
+.play-note {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.completion-panel {
+  border-top: 5px solid #2f7b55;
+  text-align: center;
+}
+
+.final-code {
+  margin: 20px 0;
+  color: var(--blue-dark);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: clamp(2.4rem, 8vw, 4rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.uniqueness-demo {
+  margin-top: 36px;
+  border-top: 5px solid var(--blue);
+  background: var(--blue-soft);
+}
+
+.constraint-fieldset {
+  margin: 22px 0;
+  border: 0;
+  padding: 0;
+}
+
+.constraint-fieldset legend {
+  margin-bottom: 9px;
+  font-weight: 700;
+}
+
+.constraint-grid,
+.candidate-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.constraint-option {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid #b9cbd6;
+  border-radius: 4px;
+  padding: 10px 12px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.constraint-option:has(input:checked) {
+  border-color: var(--blue);
+  color: var(--blue-dark);
+  background: #e1eff6;
+  font-weight: 700;
+}
+
+.candidate-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.candidate-card {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 14px;
+  background: #fff;
+}
+
+.candidate-card p {
+  margin: 2px 0 8px;
+}
+
+.candidate-card p:nth-child(2),
+.candidate-card span {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.candidate-card.is-match {
+  border-color: #54886b;
+}
+
+.candidate-card.is-excluded {
+  opacity: 0.48;
+}
+
+.unique-result {
+  margin: 18px 0 0;
+  border-left: 4px solid var(--blue);
+  padding: 10px 14px;
+  background: #fff;
+  font-weight: 700;
+}
+
+.unique-result.is-unique {
+  border-left-color: #2f7b55;
+  color: #21583d;
+}
+
+.unique-result.is-warning {
+  border-left-color: #b45309;
+  color: #7a3d0a;
+}
+
 @media (max-width: 800px) {
   :root {
     --header-height: 56px;
@@ -487,6 +827,22 @@ th {
 
   .scenario-object-list {
     columns: 1;
+  }
+
+  .scenario-card-grid,
+  .constraint-grid,
+  .candidate-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .answer-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .play-clue-card,
+  .completion-panel,
+  .uniqueness-demo {
+    padding: 19px;
   }
 }
 

@@ -14,8 +14,9 @@
 
 1. `templates/content-page.html` 提供新頁面的固定骨架。
 2. `data/navigation.json` 同時管理側欄與首頁內容索引。
-3. `data/scenarios.json` 集中保存場景案例，避免重複抄寫。
-4. `scripts/validate_site.py` 檢查頁面是否遵守共用結構。
+3. `data/scenarios.json` 集中保存場景、線索、提示與驗證案例，避免重複抄寫。
+4. 場景頁共用「玩家模式／開發者模式」，可直接試玩，也能操作唯一性檢查。
+5. 兩支驗證程式會檢查頁面結構、場景格式與唯一性資料。
 
 ## 目前頁面
 

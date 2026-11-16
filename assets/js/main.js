@@ -4,7 +4,7 @@
   const body = document.body;
   const root = body.dataset.root || "";
   const currentPage = body.dataset.page || "";
-  const dataVersion = "20261116-3";
+  const dataVersion = "20261116-4";
   const header = document.querySelector("[data-site-header]");
   const sidebar = document.querySelector("[data-sidebar]");
   const footer = document.querySelector("[data-site-footer]");
