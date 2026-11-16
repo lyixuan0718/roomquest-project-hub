@@ -6,7 +6,7 @@
   if (!scenarioContainer && !cardsContainer) return;
 
   const root = document.body.dataset.root || "";
-  const dataVersion = "20261116-4";
+  const dataVersion = "20261116-5";
   const escapeHtml = (value) => String(value)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
@@ -60,7 +60,7 @@
               <label for="player-answer">你的答案</label>
               <div class="answer-controls">
                 <input id="player-answer" name="answer" autocomplete="off" required>
-                <button class="button-primary" type="submit">確認答案</button>
+                <button class="button-primary" type="submit" data-submit-answer>確認答案</button>
               </div>
             </form>
             <div class="play-actions">
@@ -73,7 +73,8 @@
           <p class="play-note">這個模式只讀取已核准的遊戲資料，不會在遊玩時呼叫 AI。</p>
         </section>`;
 
-      host.querySelector("[data-answer-form]").addEventListener("submit", (event) => {
+      const answerForm = host.querySelector("[data-answer-form]");
+      answerForm.addEventListener("submit", (event) => {
         event.preventDefault();
         const input = event.currentTarget.elements.answer;
         const feedback = host.querySelector("[data-feedback]");
@@ -103,6 +104,10 @@
           <button class="button-secondary" type="button" data-replay>再玩一次</button>
         </section>`;
         host.querySelector("[data-replay]").addEventListener("click", () => renderPlayerMode(scenario, host));
+      });
+      host.querySelector("[data-submit-answer]").addEventListener("click", (event) => {
+        event.preventDefault();
+        answerForm.requestSubmit();
       });
       host.querySelector("[data-show-hint]").addEventListener("click", () => {
         visibleHints = Math.min(visibleHints + 1, clue.hints.length);
